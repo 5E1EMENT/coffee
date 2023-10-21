@@ -1,0 +1,54 @@
+@import './base.css';
+
+#app {
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
+}
+
+.blur-load {
+  background: url('https://www.industrialempathy.com/img/blurry.svg');
+  height: 225px;
+  border-radius: 5px 5px 0 0;
+  background-size: contain;
+  background-position: center;
+  position: relative;
+
+  img {
+    opacity: 0;
+  }
+
+  &.loaded {
+     img {
+      opacity: 1;
+      transition: opacity 200ms ease-in-out;
+    }
+    &::before {
+      animation: none;
+      background-color: transparent;
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width:100%;
+    inset: 0;
+    animation: pulse 2s infinite;
+    background-color: rgba(255,255,255, 0.1);
+  }
+
+  @keyframes pulse {
+    0% {
+      background-color: rgba(255,255,255, 0);
+    }
+    50% {
+      background-color: rgba(255,255,255, 0.5);
+    }
+    100% {
+      background-color: rgba(255,255,255, 0);
+    }
+  }
+}
+
