@@ -28,7 +28,6 @@ export const useCoffeeStore = defineStore('coffee', () => {
         ([coffeeData, url]) => {
           const card = { ...coffeeData, url }
           cards.value.push(card)
-          loader.value = false
         }
       )
     } catch (error) {
