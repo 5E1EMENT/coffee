@@ -13,10 +13,9 @@ app.config.globalProperties.$api = COFFEE_DATA_API
 app.config.globalProperties.$pictures = PICTURES_API
 
 pinia.use(({ store }) => {
-    store.$api = app.config.globalProperties.$api;
-    store.$pictures = app.config.globalProperties.$pictures;
-
-});
+  store.$api = app.config.globalProperties.$api
+  store.$pictures = app.config.globalProperties.$pictures
+})
 app.use(pinia)
 
 app.mount('#app')

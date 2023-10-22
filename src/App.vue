@@ -22,11 +22,9 @@ let interval = setInterval(() => {
   addCard()
 }, INTERVAL_TIME)
 
-
 onMounted(async () => await store.getCoffee())
 
 onUnmounted(() => clearInterval(interval))
-
 </script>
 
 <template>
@@ -34,13 +32,13 @@ onUnmounted(() => clearInterval(interval))
     <transition-group name="list">
       <AppCard v-for="card of cards" :card="card" :key="card.id" />
     </transition-group>
-    <AppButton @click="addCard" :disabled="loader" />
+    <AppButton @click="addCard" :loading="loader" />
   </main>
 </template>
 
 <style>
 body {
-  background-color: #2631aa
+  background-color: #2631aa;
 }
 
 main {

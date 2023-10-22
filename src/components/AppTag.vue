@@ -1,5 +1,5 @@
-<template >
-    <li :style="{ background: randomColor }">{{ text }}</li>
+<template>
+  <li :style="{ background: randomColor }">{{ text }}</li>
 </template>
 <script setup>
 import { toRefs } from 'vue'
@@ -7,19 +7,19 @@ import { helpers } from '@/utils/helpers'
 
 const { randomColor } = helpers()
 const props = defineProps({
-    text: String,
+  text: String
 })
 const { text } = toRefs(props)
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 li {
-    margin-left: 10px;
-    white-space: nowrap;
-    padding: 5px;
-    border-radius: 3px;
+  margin-left: 10px;
+  white-space: nowrap;
+  padding: 5px;
+  border-radius: 3px;
 
-    &:first-child {
-        margin-left: 0;
-    }
+  &:first-child {
+    margin-left: 0;
+  }
 }
 </style>
