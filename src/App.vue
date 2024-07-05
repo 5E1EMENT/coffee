@@ -1,14 +1,15 @@
 <script setup>
-import { onMounted, computed, onUnmounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 import { useCoffeeStore } from '@/stores/coffee'
 import AppCard from '@/components/AppCard.vue'
 import AppButton from '@/components/AppButton.vue'
+import { storeToRefs } from 'pinia'
 
 const SECONDS = 30
 const INTERVAL_TIME = 1000 * SECONDS
 const store = useCoffeeStore()
-const cards = computed(() => store.cards)
-const loader = computed(() => store.loader)
+
+const { cards, loader } = storeToRefs(store)
 
 const addCard = () => {
   store.getCoffee()
