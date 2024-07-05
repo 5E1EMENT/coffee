@@ -1,9 +1,11 @@
 <script setup>
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, defineAsyncComponent } from 'vue'
 import { useCoffeeStore } from '@/stores/coffee'
-import AppCard from '@/components/AppCard.vue'
-import AppButton from '@/components/AppButton.vue'
 import { storeToRefs } from 'pinia'
+
+const AppCard = defineAsyncComponent(() => import('./components/AppCard.vue'))
+
+const AppButton = defineAsyncComponent(() => import('./components/AppButton.vue'))
 
 const SECONDS = 30
 const INTERVAL_TIME = 1000 * SECONDS
