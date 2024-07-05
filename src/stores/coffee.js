@@ -2,34 +2,36 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useCoffeeStore = defineStore('coffee', () => {
-  let cards = ref([])
-  let loader = ref(false)
+  const cards = ref([])
+  const loader = ref(false)
 
-  function getCoffeeData() {
+  const getCoffeeData = async function() {
     try {
-      return fetch(this.$api + 'coffee/random_coffee').then((res) => res.json())
+      const response = await fetch(this.$api + 'coffee/random_coffee')
+      return response.json()
     } catch (error) {
       throw new Error(`Error in getCoffeeData: ${error}`)
     }
   }
 
-  function getCoffeePicture() {
+  const getCoffeePicture = async function() {
     try {
-      return fetch(this.$pictures + 'coffeebean').then((res) => res.url)
+      const response = await fetch(this.$pictures + 'coffeebean')
+      return response.url
     } catch (error) {
       throw new Error(`Error in getCoffeePicture: ${error}`)
     }
   }
 
-  async function getCoffee() {
+  const getCoffee = async function() {
     try {
       loader.value = true
-      await Promise.all([getCoffeeData.call(this), getCoffeePicture.call(this)]).then(
-        ([coffeeData, url]) => {
-          const card = { ...coffeeData, url }
-          cards.value.push(card)
-        }
-      )
+      const [coffeeData, url] = await Promise.all([
+        getCoffeeData.call(this),
+        getCoffeePicture.call(this)
+      ])
+      const card = { ...coffeeData, url }
+      cards.value.push(card)
     } catch (error) {
       throw new Error(`Error in getCoffee: ${error}`)
     } finally {
