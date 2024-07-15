@@ -2,11 +2,9 @@
   <button :disabled="loading" :class="{ loading: loading }"></button>
 </template>
 <script setup>
-import { toRefs } from 'vue'
-const props = defineProps({
+defineProps({
   loading: Boolean
 })
-const { loading } = toRefs(props)
 </script>
 <style lang="scss" scoped>
 button {
